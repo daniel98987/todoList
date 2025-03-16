@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { categories, seed } from './core/services/data/todo-data';
 import { responseUser, User, userService } from './core/services/usuario/crear-usuario.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -57,7 +58,7 @@ export class AppComponent implements OnInit {
   // Crear un usuario
   addUser(): void {
     this.userService.createUser(this.newUser).subscribe({
-      next: (user) => {
+      next: (mensaje:string) => {
         
         this.users.push(this.newUser);
       },
@@ -86,13 +87,21 @@ export class AppComponent implements OnInit {
   }
 
   // Cargar lista de usuarios
-  getUsers(): void {
+ async  getUsers() {
+
+    // this.users =    (await firstValueFrom(this.userService.getUsers())).data
+
     this.userService.getUsers().subscribe({
       next: (responseUser:responseUser) => {
-
+        
         this.users = responseUser.data || []
       },
       error: (err) => console.error('Error obteniendo lista de usuarios:', err)
     });
+
+
+
+
+    
   }
 }

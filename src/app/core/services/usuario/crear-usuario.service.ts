@@ -14,7 +14,8 @@ export interface responseUser{
   providedIn: 'root'
 })
 export class userService {
-  private apiGetUsers = 'https://run.mocky.io/v3/ec785eff-78d8-4bdb-8fde-6e49d0139a8e'; // Cambia por tu backend
+  private apiGetUsers =   'https://run.mocky.io/v3/ec785eff-78d8-4bdb-8fde-6e49d0139a8e'; // Cambia por tu backend
+
   private apiGetUserById = 'https://run.mocky.io/v3/5a72130b-32fc-4150-8dd4-fcaf834c001c'; // Cambia por tu backend
   private apiPostCreateUser = 'https://run.mocky.io/v3/5a72130b-32fc-4150-8dd4-fcaf834c001c'; // Cambia por tu backend
   private apiUpdateCreateUser = 'https://run.mocky.io/v3/5cbf28ee-e2f5-48b3-a0d2-ee7b767dd2c60'; // Cambia por tu backend
