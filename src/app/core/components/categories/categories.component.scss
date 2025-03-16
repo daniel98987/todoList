@@ -1,0 +1,46 @@
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  .selected {
+    background-color: #1976d2 !important; /* Azul Material */
+    color: white !important;
+    border: 2px solid #1259a1 !important;
+  }
+  
+  .scroll-buttons-app{
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: #b0b0b0 transparent;
+  }

@@ -1,0 +1,94 @@
+<div class="row justify-content-start">
+
+    <div class="col-12">
+      <mat-dialog-content style="max-height: 70vh; overflow-y: auto;">
+       
+        <h2 >{{type=='update'?'Editar':'Añadir'}} tarea</h2>
+        <mat-divider class="mb-3"></mat-divider>
+        
+        <p>Título de la tarea</p>
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Escribe una tarea</mat-label>
+          <input matInput [(ngModel)]="tarea.name" />
+        </mat-form-field>
+  
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <p>Categoría</p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Selecciona una categoría</mat-label>
+              <mat-select [(ngModel)]="tarea.category">
+                <mat-option *ngFor="let category of categories" 
+                            [value]="category.name">
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 ">
+            <p>Estado</p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Selecciona el estado</mat-label>
+              <mat-select [(ngModel)]="tarea.state" (selectionChange)="onStateChange()">
+                <mat-option *ngFor="let state of ['completada','pendiente']" [value]="state">
+                  {{ state }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 ">
+            <p>Fecha de inicio: {{ tarea.initDate | date:'dd/MM/yyyy' }}</p>
+
+          
+          </div>
+          <div class="col-12 col-sm-6 " *ngIf=" tarea.endDate">
+            <p>Fecha de Finalización: {{ tarea.endDate | date:'dd/MM/yyyy' }}</p>
+
+          
+          </div>
+        </div>
+
+        <div class="row">
+          <p>Sub tareas</p>
+          <div class="col-12">
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" [(ngModel)]="subTareaName" placeholder="Escribe una subtarea..."/>
+              <button class="btn btn-primary" type="button" (click)="addSubTarea()">Añadir</button>
+            </div>
+          </div>
+  
+          <ul class="list-group w-100" style="padding: 12px;">
+            <li *ngFor="let sub of tarea.subTareas; let i = index"
+                class="list-group-item d-flex justify-content-between align-items-center py-1"
+                [ngClass]="{ 'bg-light text-muted': sub.state === 'completada' }">
+              
+              <span  *ngIf=" sub.state == 'completada'"  class="flex-grow-1 ms-2 fs-6" [class.text-decoration-line-through]="sub.state === 'completada'">
+                {{ sub.name }}
+              </span>
+              <input *ngIf=" sub.state !== 'completada'" type="text" [(ngModel)]="sub.name"
+              class="form-control form-control-sm"
+         >
+              <div class="d-flex gap-1">
+                <button mat-icon-button color="accent" (click)="toggleComplete(i)">
+                  <mat-icon style="font-size: 18px;">{{ sub.state === 'completada' ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
+                </button>
+  
+                <button mat-icon-button color="warn" (click)="removeSubTarea(sub.id)">
+                  <mat-icon style="font-size: 18px;">delete</mat-icon>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </mat-dialog-content>
+  
+<mat-dialog-actions class="d-flex justify-content-end">
+
+    <button  mat-flat-button  color="warn" (click)="closeDialog()" >Cancelar</button>
+    <button  mat-flat-button  color="primary" (click)="saveTarea()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+  
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<H1>CRUD</H1>
+
+<div class="container">
+    <h2>GET</h2>
+    <button (click)="getUsers()">Obtener Usuarios</button> 
+     <div *ngFor="let user of users">
+        <h2>User:{{user.name}}</h2>
+        <p>Email:{{user.email}}</p>
+        <p>Id:{{user.id}}</p>
+     </div>
+     <div>---------------------------------------------------------------------------------</div>
+    <h2>GET </h2>
+   
+    <button (click)="getUserById(3)">Obtener Usuario por id</button>
+        <h2>User:{{selectedUser?.name}}</h2>
+        <p>Email:{{selectedUser?.email}}</p>
+        <p>Id:{{selectedUser?.id}}</p>
+        <div>---------------------------------------------------------------------------------</div>
+    <h2>POST</h2>
+    <button (click)="addUser()">Añadir Usuario</button>
+    <div>---------------------------------------------------------------------------------</div>
+    <h2>PUT</h2>
+    <!-- <button (click)="loadUsers()">Cargar Usuarios</button> -->
+    <button (click)="updateUser()">Actualziar Usuario</button>
+    <div>---------------------------------------------------------------------------------</div>
+    <h2>DELETE</h2>
+    <button (click)="deleteUser(1)">Eliminar Usuario</button>
+    <div>---------------------------------------------------------------------------------</div>
+</div>
+<router-outlet></router-outlet>

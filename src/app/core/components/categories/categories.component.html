@@ -1,0 +1,50 @@
+<div class="div" style="padding: 10px">
+    <section class="d-none d-md-block">
+      <div class="example-label"><h4>Categorías</h4></div>
+      <p>Actualmente se ubica en la categoría {{selectedCategory}}</p>
+      <div class="example-label"></div>
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="example-button-row d-flex flex-nowrap gap-2 scroll-buttons-app"
+
+          >
+            <div class="d-flex flex-row" style="padding: 5px">
+              <button
+                *ngFor="let category of categories"
+                mat-raised-button
+                class="me-2"
+                [ngClass]="{ 'selected': selectedCategory === category.name }"
+                (click)="selectCategory(category.name)"
+              >
+                <span>
+                  {{ category.name }}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="d-block d-md-none">
+      <div class="row align-items-center">
+        <div class="col-auto d-flex align-items-center">
+          <div class="example-label">Categorías</div>
+        </div>
+        <div class="col d-flex align-items-center mt-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Selecciona una categoría</mat-label>
+            <mat-select [(ngModel)]="selectedCategory" (selectionChange)="selectCategory($event.value)">
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </section>
+  
+    <mat-divider></mat-divider>
+  </div>
+  
